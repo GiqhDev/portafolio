@@ -1,77 +1,104 @@
-function toggleContent() {
-    const shortContent = document.getElementById("short-content");
-    const fullContent = document.getElementById("full-content");
-    const button = document.getElementById("read-more-btn");
-  
-    if (fullContent.style.display === "none") {
-      fullContent.style.display = "block";
-      shortContent.style.display = "none";
-      button.innerText = "Leer menos";
-    } else {
-      fullContent.style.display = "none";
-      shortContent.style.display = "block";
-      button.innerText = "Leer más";
-    }
-  }
+const menuToggle = document.querySelector('#menu-toggle');
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('.navbar');
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('header nav a');
+const header = document.querySelector('.header');
+const contactForm = document.querySelector('#contact-form');
+const formNote = document.querySelector('#form-note');
 
+const closeMenu = () => {
+    navbar.classList.remove('active');
+    menuIcon.classList.remove('bx-x');
+    menuIcon.classList.add('bx-menu');
+    menuToggle.setAttribute('aria-expanded', 'false');
+};
 
+menuToggle?.addEventListener('click', () => {
+    const isOpen = navbar.classList.toggle('active');
 
+    menuIcon.classList.toggle('bx-menu', !isOpen);
+    menuIcon.classList.toggle('bx-x', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+});
 
-/*==================== toggle icon navbar ====================*/
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+const updateActiveLink = () => {
+    const scrollPosition = window.scrollY + 180;
 
-menuIcon.onclick = () =>{
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-}
-/*==================== scroll sections active link ====================*/
-let sections = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('header nav a');
+    sections.forEach((section) => {
+        const offsetTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
 
-window.onscroll = () => {
-    sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let heigth = sec.offsetHeight;
-        let id = sec.getAttribute('id');
-
-        if(top>=offset && top < offset+heigth){
-            navLinks.forEach(links =>{
-                links.classList.remove('active');
-                document.querySelector('header nav a[href*='+id+']').classList.add('active')
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + sectionHeight) {
+            navLinks.forEach((link) => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
             });
         }
     });
-
-    /*==================== sticky navbar ====================*/
-
-    let header = document.querySelector('header');
-    header.classList.toggle('.sticky',window.scrollY > 100);
-
-    /*==================== remove toggle icon and navbar when click navbar link (scroll) ====================*/
-    menuIcon.classList.remove('bx-x');
-    navbar.classList.remove('active');
 };
 
-
-/*==================== scroll reveal ====================*/
-ScrollReveal({
-    reset:true,
-    distance:'80px',
-    duration:2000,
-    delay:200
+window.addEventListener('scroll', () => {
+    header.classList.toggle('sticky', window.scrollY > 40);
+    updateActiveLink();
+    closeMenu();
 });
 
-ScrollReveal().reveal('.home-content, .heading',{origin:'top'});
-ScrollReveal().reveal('.home-img, .services-container, .portfolio-box, .contact form',{origin:'bottom'});
-ScrollReveal().reveal('.home-content h1, .about-img',{origin:'left'});
-ScrollReveal().reveal('.home-content p, .about-content',{origin:'rigth'});
-/*==================== typed js ====================*/
-const typed = new Typed('.multiple-text',{
-    strings:['Desarrollador de Software','Semi-Senior'],
-    typeSpeed:100,
-    backSpeed:100,
-    backDelay:1000,
-    loop:true
+navLinks.forEach((link) => {
+    link.addEventListener('click', closeMenu);
+});
+
+updateActiveLink();
+
+if (window.ScrollReveal) {
+    const sr = ScrollReveal({
+        distance: '60px',
+        duration: 900,
+        delay: 120,
+        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        reset: false
+    });
+
+    sr.reveal('.home-content, .section-header, .contact-panel', { origin: 'left' });
+    sr.reveal('.home-visual, .about-img, .contact-form', { origin: 'right' });
+    sr.reveal('.services-box, .portfolio-box, .highlight-card', {
+        origin: 'bottom',
+        interval: 120
+    });
+}
+
+if (window.Typed) {
+    new Typed('.multiple-text', {
+        strings: [
+            'APIs modernas y robustas',
+            'experiencias web y desktop',
+            'soluciones listas para crecer'
+        ],
+        typeSpeed: 55,
+        backSpeed: 32,
+        backDelay: 1300,
+        loop: true
+    });
+}
+
+contactForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = formData.get('name')?.toString().trim() || '';
+    const email = formData.get('email')?.toString().trim() || '';
+    const subject = formData.get('subject')?.toString().trim() || '';
+    const phone = formData.get('phone')?.toString().trim() || '';
+    const message = formData.get('message')?.toString().trim() || '';
+
+    const emailSubject = encodeURIComponent(`Consulta desde portafolio: ${subject}`);
+    const emailBody = encodeURIComponent(
+        `Nombre: ${name}\nCorreo: ${email}\nTelefono: ${phone || 'No proporcionado'}\n\nMensaje:\n${message}`
+    );
+
+    window.location.href = `mailto:gustavoquintanahidalgo@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+
+    if (formNote) {
+        formNote.textContent = 'Tu cliente de correo deberia abrirse con el mensaje preparado.';
+    }
 });

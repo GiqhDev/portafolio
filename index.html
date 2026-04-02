@@ -1,184 +1,340 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portafolio</title>
-
-  <!-- box icons -->
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-  <!-- custom css -->
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gustavo Quintana | Desarrollador .NET</title>
+  <meta
+    name="description"
+    content="Portafolio de Gustavo Quintana, desarrollador de software enfocado en .NET, aplicaciones web, desktop y moviles."
+  >
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <!-- header design -->
-  <header class="header">
-    <a href="#home" class="logo"><span>PORTAFOLIO</span></a>
-    <i class='bx bx-menu' id="menu-icon"></i>
-    <nav class="navbar">
+  <header class="header" id="top">
+    <a href="#home" class="logo" aria-label="Ir al inicio">
+      Gustavo<span>Q.</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      aria-label="Abrir menu de navegacion"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+    >
+      <i class="bx bx-menu" id="menu-icon" aria-hidden="true"></i>
+    </button>
+
+    <nav class="navbar" id="primary-navigation" aria-label="Navegacion principal">
       <a href="#home" class="active">Inicio</a>
-      <a href="#about">Acerca de</a>
+      <a href="#about">Perfil</a>
       <a href="#services">Servicios</a>
-      <a href="#portfolio">Portafolio</a>
+      <a href="#portfolio">Proyectos</a>
       <a href="#contact">Contacto</a>
-      <a href="#"></a>
     </nav>
   </header>
 
-  <!-- home section design -->
-  <section class="home" id="home">
-    <div class="home-content">
-      <h3>HOLA!!!, Me llamo</h3>
-      <h1>Gustavo Quintana</h1>
-      <h3>Y soy <span class="multiple-text"></span></h3>
-      <p>Con más de 3 años de experiencia en aplicaciones web, de escritorio y móviles, apasionado por la innovación, la eficiencia tecnológica y la resolución de problemas complejos. Comprometido con la mejora continua y el aprendizaje constante.</p>
-      <div class="social-media">
-        <a href="https://www.linkedin.com/in/gustavo-quintana-hidalgo-38a7462a3/" target="_blank"><i class='bx bxl-linkedin'></i></a>
-        <a href="#"><i class='bx bxl-facebook'></i></a>
-        <a href="#"><i class='bx bxl-instagram-alt'></i></a>
-        <a href="#"><i class='bx bxl-twitter'></i></a> 
-        <a href="https://wa.me/+59894082166" target="_blank"><i class='bx bxl-whatsapp'></i></a>        
-      </div>
-      <a href="Resources/cv/CV240501-1_Gustavo_Quintana_Hidalgo.pdf" class="btn" target="_blank"> Descargar CV</a>
-    </div>
-    <div class="home-img">
-      <img src="Resources/images/me1.jpg" alt="">
-    </div>
-  </section>
-  <!-- about section design -->
-  <section class="about" id="about">
-    <div class="about-img">
-      <img src="Resources/images/me2.jpg" alt="">
-    </div>
-    <div class="about-content">
-      <h2 class="heading">Sobre <span>Mí</span></h2>
-      <h3>Desarrollador de Software</h3>
-      <p id="short-content">Desarrollador de Software especializado en .NET con más de 3 años de experiencia en desarrollo de aplicaciones de escritorio, web y móviles utilizando C# como lenguaje principal ...</p>
-      <p id="full-content" style="display: none;">Desarrollador de Software especializado en .NET con más de 3 años de experiencia en desarrollo de aplicaciones de escritorio, web y móviles utilizando C# como lenguaje principal. Mi trayectoria incluye el trabajo en proyectos de gran escala y complejidad, desarrollando APIs y aplicaciones con frameworks como .NET Framework, .NET Core y .NET, siguiendo las mejores prácticas y estándares de calidad.
-        Además, tengo experiencia en tecnologías y herramientas complementarias como React y Blazor para el desarrollo Front-end, SQL Server y SQLite para bases de datos, así como en sistemas de control de versiones con GIT y GitHub. He trabajado con Bootstrap para interfaces responsive y utilizo Microsoft Azure y Azure DevOps para la gestión de proyectos en la nube y el despliegue de soluciones.
-        Mi enfoque está en el aprendizaje continuo y en la entrega de soluciones que aporten valor y eficiencia.</p>
-      <a class="btn" id="read-more-btn" onclick="toggleContent()">Leer más</a>
-    </div>
-  </section>
-  <!-- services section design -->
-  <section class="services" id="services">
-    <h2 class="heading">Mis <span>Servicios</span></h2>
-    <div class="services-container">
-      <div class="services-box">
-        <i class="bx bx-code-alt"></i>
-        <h3>Web Develoment</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem minima sit quia quidem iusto atque dolores provident, omnis ratione illum!</p>
-        <a href="#" class="btn">Read More</a>
+  <main>
+    <section class="home" id="home">
+      <div class="home-content">
+        <p class="eyebrow">Desarrollador de software especializado en soluciones .NET</p>
+        <h1>Construyo productos utiles, escalables y bien pensados.</h1>
+        <h2 class="subtitle">
+          Trabajo en <span class="multiple-text">aplicaciones web, desktop y moviles</span>
+        </h2>
+        <p class="lead">
+          Soy Gustavo Quintana. Tengo experiencia desarrollando APIs, aplicaciones empresariales e interfaces
+          modernas con foco en calidad, mantenibilidad y valor real para el negocio.
+        </p>
 
-      </div>
-      <div class="services-box">
-        <i class='bx bx-desktop' ></i>
-        <h3>Desktop Develoment</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem minima sit quia quidem iusto atque dolores provident, omnis ratione illum!</p>
-        <a href="#" class="btn">Read More</a>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn">Ver proyectos</a>
+          <a href="Resources/cv/CV240501-1_Gustavo_Quintana_Hidalgo.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Descargar CV</a>
+        </div>
 
-      </div>
-      <div class="services-box">
-        <i class='bx bx-mobile-alt' ></i>
-        <h3>Mobile Develoment</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem minima sit quia quidem iusto atque dolores provident, omnis ratione illum!</p>
-        <a href="#" class="btn">Read More</a>
+        <div class="social-media" aria-label="Redes y canales de contacto">
+          <a href="https://www.linkedin.com/in/gustavo-quintana-hidalgo-38a7462a3/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="bx bxl-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:gustavoquintanahidalgo@gmail.com" aria-label="Enviar correo">
+            <i class="bx bx-envelope" aria-hidden="true"></i>
+          </a>
+          <a href="https://wa.me/59894082166" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="bx bxl-whatsapp" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="bx bxl-github" aria-hidden="true"></i>
+          </a>
+        </div>
 
-      </div>      
-    </div>
-  </section>
-  <!-- portfolio section design -->
-<section class="portfolio" id="portfolio">
-  <h2 class="heading">Últimos <span>Proyectos</span></h2>
-  <div class="portfolio-container">
-    <div class="portfolio-box">
-      <img src="Resources/images/portfolio1.jpg" alt="">
-      <div class="portfolio-layer">
-        <h4>Web Design</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, earum?</p>
-        <a href="#"><i class="bx bx-link-external"></i></a>
+        <ul class="quick-facts" aria-label="Resumen profesional">
+          <li>4+ años de experiencia profesional</li>
+          <li>Stack principal: C#, .NET, SQL Server, React y Blazor</li>
+          <li>Experiencia en APIs, desktop, cloud y despliegues</li>
+        </ul>
       </div>
-    </div>
-    <div class="portfolio-box">
-      <img src="Resources/images/portfolio2.jpg" alt="">
-      <div class="portfolio-layer">
-        <h4>Web Design</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, earum?</p>
-        <a href="#"><i class="bx bx-link-external"></i></a>
+
+      <div class="home-visual">
+        <div class="image-frame">
+          <img src="Resources/images/me1.jpg" alt="Retrato de Gustavo Quintana">
+        </div>
+        <div class="stat-card stat-card-primary">
+          <span class="stat-number">4+</span>
+          <span class="stat-label">años creando software</span>
+        </div>
+        <div class="stat-card stat-card-secondary">
+          <span class="stat-number">.NET</span>
+          <span class="stat-label">Backend y arquitectura</span>
+        </div>
       </div>
-    </div>
-    <div class="portfolio-box">
-      <img src="Resources/images/portfolio3.jpg" alt="">
-      <div class="portfolio-layer">
-        <h4>Web Design</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, earum?</p>
-        <a href="#"><i class="bx bx-link-external"></i></a>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="Resources/images/me2.jpg" alt="Gustavo Quintana trabajando">
       </div>
-    </div>
-    <div class="portfolio-box">
-      <img src="Resources/images/portfolio4.jpg" alt="">
-      <div class="portfolio-layer">
-        <h4>Web Design</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, earum?</p>
-        <a href="#"><i class="bx bx-link-external"></i></a>
+
+      <div class="about-content">
+        <p class="section-kicker">Perfil profesional</p>
+        <h2 class="heading">Software con foco en claridad, impacto y evolucion.</h2>
+        <p>
+          Me especializo en desarrollo con .NET y he participado en proyectos de escritorio, web y moviles,
+          construyendo soluciones para escenarios de negocio reales. Me interesa combinar una base tecnica solida
+          con una experiencia de usuario clara y una arquitectura que no se vuelva una carga con el tiempo.
+        </p>
+        <p>
+          Tambien trabajo con React, Blazor, SQL Server, SQLite, Git, Azure y Azure DevOps. Disfruto mejorar
+          procesos, detectar cuellos de botella y transformar requisitos complejos en productos mantenibles.
+        </p>
+
+        <div class="about-highlights">
+          <article class="highlight-card">
+            <h3>Backend confiable</h3>
+            <p>APIs, integraciones y reglas de negocio con prioridad en estabilidad, rendimiento y calidad.</p>
+          </article>
+          <article class="highlight-card">
+            <h3>Frontend funcional</h3>
+            <p>Interfaces limpias y responsivas para aplicaciones internas, dashboards y experiencias publicas.</p>
+          </article>
+          <article class="highlight-card">
+            <h3>Entrega responsable</h3>
+            <p>Buenas practicas, control de versiones, despliegues y mejora continua durante todo el ciclo.</p>
+          </article>
+        </div>
       </div>
-    </div>
-    <div class="portfolio-box">
-      <img src="Resources/images/portfolio5.jpg" alt="">
-      <div class="portfolio-layer">
-        <h4>Web Design</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, earum?</p>
-        <a href="#"><i class="bx bx-link-external"></i></a>
+    </section>
+
+    <section class="services" id="services">
+      <p class="section-kicker align-center">Servicios</p>
+      <h2 class="heading">Como puedo aportar en un proyecto</h2>
+
+      <div class="services-container">
+        <article class="services-box">
+          <i class="bx bx-code-alt" aria-hidden="true"></i>
+          <h3>Aplicaciones web</h3>
+          <p>
+            Desarrollo de sistemas web, APIs y paneles administrativos con foco en rendimiento, seguridad y escalabilidad.
+          </p>
+        </article>
+
+        <article class="services-box">
+          <i class="bx bx-desktop" aria-hidden="true"></i>
+          <h3>Software desktop</h3>
+          <p>
+            Construccion y mantenimiento de soluciones de escritorio para procesos internos, operativos o comerciales.
+          </p>
+        </article>
+
+        <article class="services-box">
+          <i class="bx bx-mobile-alt" aria-hidden="true"></i>
+          <h3>Soluciones multiplataforma</h3>
+          <p>
+            Participacion en proyectos moviles o hibridos conectados con servicios backend, autenticacion y datos.
+          </p>
+        </article>
       </div>
-    </div>
-    <div class="portfolio-box">
-      <img src="Resources/images/portfolio6.jpg" alt="">
-      <div class="portfolio-layer">
-        <h4>Web Design</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, earum?</p>
-        <a href="#"><i class="bx bx-link-external"></i></a>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <div class="section-header">
+        <div>
+          <p class="section-kicker">Proyectos</p>
+          <h2 class="heading">Casos que puedes revisar y ampliar conmigo</h2>
+        </div>
+        <p class="section-note">
+          Esta seccion ya queda lista para que agregues capturas reales, enlaces de demo y repositorios cuando quieras.
+        </p>
       </div>
-    </div>
-  </div>
-</section>
-  <!-- contact section design -->
-   <section class="contact" id="contact">
-    <h2 class="heading">Contacta <span>Conmigo!</span></h2>
-    <form action="#">
-      <div class="input-box">
-        <input type="text" placeholder="Nombre completo">
-        <input type="email" placeholder="Correo electrónico">
+
+      <div class="portfolio-container">
+        <article class="portfolio-box">
+          <img src="Resources/images/portfolio1.jpg" alt="Vista previa del proyecto de gestion empresarial">
+          <div class="portfolio-layer">
+            <span class="project-tag">SaaS Multi-tenant</span>
+            <h3>BarberSaaS</h3>
+            <p>Plataforma para gestion de barberias con agenda publica, operacion interna, servicios, barberos y citas.</p>
+            <ul class="project-stack" aria-label="Tecnologias usadas en BarberSaaS">
+              <li>.NET 10</li>
+              <li>Web API</li>
+              <li>EF Core</li>
+              <li>PostgreSQL</li>
+              <li>JWT</li>
+            </ul>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/GiqhDev/BarberSaaS" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+              <span class="project-link is-disabled">Frontend MAUI en evolucion</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-box">
+          <img src="Resources/images/portfolio2.jpg" alt="Vista previa del proyecto de escritorio">
+          <div class="portfolio-layer">
+            <span class="project-tag">Libreria .NET</span>
+            <h3>MyCrypto</h3>
+            <p>Libreria para cifrado, hashing y validacion segura de datos sensibles con soporte para formatos heredados.</p>
+            <ul class="project-stack" aria-label="Tecnologias usadas en MyCrypto">
+              <li>.NET</li>
+              <li>AES-CBC</li>
+              <li>HMAC-SHA256</li>
+              <li>PBKDF2</li>
+              <li>Tests</li>
+            </ul>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/gqh22/MyCrypto" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+              <span class="project-link is-disabled">Paquete reutilizable</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-box">
+          <img src="Resources/images/portfolio3.jpg" alt="Vista previa del dashboard de indicadores">
+          <div class="portfolio-layer">
+            <span class="project-tag">Proyecto destacado</span>
+            <h3>Dashboard de indicadores</h3>
+            <p>Espacio reservado para un caso con metricas, filtros, visualizacion clara y foco en negocio.</p>
+            <div class="project-links">
+              <span class="project-link is-disabled">Capturas en proceso</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-box">
+          <img src="Resources/images/portfolio4.jpg" alt="Vista previa de integracion de servicios">
+          <div class="portfolio-layer">
+            <span class="project-tag">Integraciones</span>
+            <h3>Servicios conectados</h3>
+            <p>Integracion entre aplicaciones, persistencia de datos y automatizacion de procesos.</p>
+            <div class="project-links">
+              <span class="project-link is-disabled">Enlace pendiente</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-box">
+          <img src="Resources/images/portfolio5.jpg" alt="Vista previa del proyecto movil">
+          <div class="portfolio-layer">
+            <span class="project-tag">Movil</span>
+            <h3>Experiencia movil conectada</h3>
+            <p>Consumo de APIs y trabajo con interfaces pensadas para rapidez y claridad de uso.</p>
+            <div class="project-links">
+              <span class="project-link is-disabled">Demo pendiente</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-box">
+          <img src="Resources/images/portfolio6.jpg" alt="Vista previa del proyecto cloud">
+          <div class="portfolio-layer">
+            <span class="project-tag">Cloud</span>
+            <h3>Despliegue y mantenimiento</h3>
+            <p>Configuracion de entornos, versionado y soporte para entregas mas estables.</p>
+            <div class="project-links">
+              <span class="project-link is-disabled">Caso en construccion</span>
+            </div>
+          </div>
+        </article>
       </div>
-      <div class="input-box">
-        <input type="number" placeholder="Número de teléfono">
-        <input type="text" placeholder="Asunto del correo">
+    </section>
+
+    <section class="contact" id="contact">
+      <p class="section-kicker align-center">Contacto</p>
+      <h2 class="heading">Conversemos sobre tu idea o tu proyecto</h2>
+
+      <div class="contact-wrapper">
+        <div class="contact-panel">
+          <h3>Canales directos</h3>
+          <p>
+            Si prefieres una via rapida, puedes escribirme por correo, LinkedIn o WhatsApp.
+            Respondo mejor cuando el mensaje incluye contexto, objetivo y plazo.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:gustavoquintanahidalgo@gmail.com">
+              <i class="bx bx-envelope" aria-hidden="true"></i>
+              <span>gustavoquintanahidalgo@gmail.com</span>
+            </a>
+            <a href="https://wa.me/59894082166" target="_blank" rel="noopener noreferrer">
+              <i class="bx bxl-whatsapp" aria-hidden="true"></i>
+              <span>WhatsApp</span>
+            </a>
+            <a href="https://www.linkedin.com/in/gustavo-quintana-hidalgo-38a7462a3/" target="_blank" rel="noopener noreferrer">
+              <i class="bx bxl-linkedin" aria-hidden="true"></i>
+              <span>Perfil de LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <div class="input-box">
+            <label>
+              <span>Nombre</span>
+              <input type="text" name="name" placeholder="Tu nombre" required>
+            </label>
+            <label>
+              <span>Correo</span>
+              <input type="email" name="email" placeholder="tunombre@correo.com" required>
+            </label>
+          </div>
+
+          <div class="input-box">
+            <label>
+              <span>Asunto</span>
+              <input type="text" name="subject" placeholder="Tipo de proyecto o consulta" required>
+            </label>
+            <label>
+              <span>Telefono</span>
+              <input type="tel" name="phone" placeholder="Opcional">
+            </label>
+          </div>
+
+          <label class="textarea-field">
+            <span>Mensaje</span>
+            <textarea name="message" rows="10" placeholder="Cuantame que necesitas y en que etapa esta el proyecto." required></textarea>
+          </label>
+
+          <button type="submit" class="btn">Preparar correo</button>
+          <p class="form-note" id="form-note">El formulario abrira tu cliente de correo con el mensaje listo para enviar.</p>
+        </form>
       </div>
-      <textarea name="" id="" cols="30" rows="10" placeholder="Su mensaje"></textarea>
-      <input type="submit" value="Enviar mensaje" class="btn">
-    </form>
-   </section>
-  <!-- footer design -->
+    </section>
+  </main>
+
   <footer class="footer">
     <div class="footer-text">
-      <p>Copyrigth &copy; 2024 by GIQH | All Rigths Reserved</p>
+      <p>Copyright &copy; 2026 Gustavo Quintana. Todos los derechos reservados.</p>
     </div>
     <div class="footer-iconTop">
-      <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
+      <a href="#top" aria-label="Volver arriba"><i class="bx bx-up-arrow-alt" aria-hidden="true"></i></a>
     </div>
   </footer>
 
-  <!-- scroll reveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
-
-  <!-- typed js -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-  <!-- custom js -->
   <script src="js/script.js"></script>
 </body>
-
 </html>
