@@ -6,6 +6,40 @@ const navLinks = document.querySelectorAll('header nav a');
 const header = document.querySelector('.header');
 const contactForm = document.querySelector('#contact-form');
 const formNote = document.querySelector('#form-note');
+const imageTriggers = document.querySelectorAll('.project-image-trigger');
+const imageModal = document.querySelector('#image-modal');
+const imageModalPreview = document.querySelector('#image-modal-preview');
+const imageModalTitle = document.querySelector('#image-modal-title');
+const imageModalClose = document.querySelector('#image-modal-close');
+
+const openImageModal = (trigger) => {
+    if (!imageModal || !imageModalPreview || !imageModalTitle) {
+        return;
+    }
+
+    const imageSrc = trigger.dataset.modalImage || '';
+    const imageAlt = trigger.dataset.modalAlt || '';
+    const imageTitle = trigger.dataset.modalTitle || 'Vista ampliada';
+
+    imageModalPreview.src = imageSrc;
+    imageModalPreview.alt = imageAlt;
+    imageModalTitle.textContent = imageTitle;
+    imageModal.classList.add('is-open');
+    imageModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+};
+
+const closeImageModal = () => {
+    if (!imageModal || !imageModalPreview) {
+        return;
+    }
+
+    imageModal.classList.remove('is-open');
+    imageModal.setAttribute('aria-hidden', 'true');
+    imageModalPreview.src = '';
+    imageModalPreview.alt = '';
+    document.body.style.overflow = '';
+};
 
 const closeMenu = () => {
     navbar.classList.remove('active');
@@ -49,6 +83,26 @@ navLinks.forEach((link) => {
 });
 
 updateActiveLink();
+
+imageTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => openImageModal(trigger));
+});
+
+imageModalClose?.addEventListener('click', closeImageModal);
+
+imageModal?.addEventListener('click', (event) => {
+    const target = event.target;
+
+    if (target instanceof HTMLElement && target.dataset.closeModal === 'true') {
+        closeImageModal();
+    }
+});
+
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && imageModal?.classList.contains('is-open')) {
+        closeImageModal();
+    }
+});
 
 if (window.ScrollReveal) {
     const sr = ScrollReveal({
