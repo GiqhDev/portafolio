@@ -165,18 +165,29 @@
           <p class="section-kicker">Proyectos</p>
           <h2 class="heading">Casos que puedes revisar y ampliar conmigo</h2>
         </div>
-        <p class="section-note">
+        <!-- <p class="section-note">
           Esta seccion ya queda lista para que agregues capturas reales, enlaces de demo y repositorios cuando quieras.
-        </p>
+        </p> -->
       </div>
 
       <div class="portfolio-container">
-        <article class="portfolio-box">
-          <img src="Resources/images/portfolio1.jpg" alt="Vista previa del proyecto de gestion empresarial">
+        <article class="portfolio-box portfolio-box-featured">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
+              data-modal-image="Resources/images/barbersaas.png"
+              data-modal-alt="Vista ampliada del proyecto BarberSaaS"
+              data-modal-title="BarberSaaS"
+              aria-label="Ampliar imagen del proyecto BarberSaaS"
+            >
+              <img src="Resources/images/barbersaas.png" alt="Vista previa del proyecto de gestion empresarial">
+            </button>
+          </div>
           <div class="portfolio-layer">
             <span class="project-tag">SaaS Multi-tenant</span>
             <h3>BarberSaaS</h3>
-            <p>Plataforma para gestion de barberias con agenda publica, operacion interna, servicios, barberos y citas.</p>
+            <p>Plataforma para gestion de barberias con agenda publica, operacion interna y turnos multi-tenant.</p>
             <ul class="project-stack" aria-label="Tecnologias usadas en BarberSaaS">
               <li>.NET 10</li>
               <li>Web API</li>
@@ -192,7 +203,18 @@
         </article>
 
         <article class="portfolio-box">
-          <img src="Resources/images/portfolio2.jpg" alt="Vista previa del proyecto de escritorio">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
+              data-modal-image="Resources/images/mycrypto-porfolio1.png"
+              data-modal-alt="Vista ampliada del proyecto MyCrypto"
+              data-modal-title="MyCrypto"
+              aria-label="Ampliar imagen del proyecto MyCrypto"
+            >
+              <img src="Resources/images/mycrypto-porfolio1.png" alt="Vista previa del proyecto de escritorio">
+            </button>
+          </div>
           <div class="portfolio-layer">
             <span class="project-tag">Libreria .NET</span>
             <h3>MyCrypto</h3>
@@ -205,14 +227,25 @@
               <li>Tests</li>
             </ul>
             <div class="project-links">
-              <a class="project-link" href="https://github.com/gqh22/MyCrypto" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+              <a class="project-link" href="https://github.com/GiqhDev/MyCrypto" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
               <span class="project-link is-disabled">Paquete reutilizable</span>
             </div>
           </div>
         </article>
 
         <article class="portfolio-box">
-          <img src="Resources/images/portfolio3.jpg" alt="Vista previa del dashboard de indicadores">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
+              data-modal-image="Resources/images/portfolio3.jpg"
+              data-modal-alt="Vista ampliada del dashboard de indicadores"
+              data-modal-title="Dashboard de indicadores"
+              aria-label="Ampliar imagen del dashboard de indicadores"
+            >
+              <img src="Resources/images/portfolio3.jpg" alt="Vista previa del dashboard de indicadores">
+            </button>
+          </div>
           <div class="portfolio-layer">
             <span class="project-tag">Proyecto destacado</span>
             <h3>Dashboard de indicadores</h3>
@@ -224,7 +257,18 @@
         </article>
 
         <article class="portfolio-box">
-          <img src="Resources/images/portfolio4.jpg" alt="Vista previa de integracion de servicios">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
+              data-modal-image="Resources/images/portfolio4.jpg"
+              data-modal-alt="Vista ampliada del proyecto de integracion de servicios"
+              data-modal-title="Servicios conectados"
+              aria-label="Ampliar imagen del proyecto de integracion de servicios"
+            >
+              <img src="Resources/images/portfolio4.jpg" alt="Vista previa de integracion de servicios">
+            </button>
+          </div>
           <div class="portfolio-layer">
             <span class="project-tag">Integraciones</span>
             <h3>Servicios conectados</h3>
@@ -236,7 +280,18 @@
         </article>
 
         <article class="portfolio-box">
-          <img src="Resources/images/portfolio5.jpg" alt="Vista previa del proyecto movil">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
+              data-modal-image="Resources/images/portfolio5.jpg"
+              data-modal-alt="Vista ampliada del proyecto movil"
+              data-modal-title="Experiencia movil conectada"
+              aria-label="Ampliar imagen del proyecto movil"
+            >
+              <img src="Resources/images/portfolio5.jpg" alt="Vista previa del proyecto movil">
+            </button>
+          </div>
           <div class="portfolio-layer">
             <span class="project-tag">Movil</span>
             <h3>Experiencia movil conectada</h3>
@@ -248,7 +303,18 @@
         </article>
 
         <article class="portfolio-box">
-          <img src="Resources/images/portfolio6.jpg" alt="Vista previa del proyecto cloud">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
+              data-modal-image="Resources/images/portfolio6.jpg"
+              data-modal-alt="Vista ampliada del proyecto cloud"
+              data-modal-title="Despliegue y mantenimiento"
+              aria-label="Ampliar imagen del proyecto cloud"
+            >
+              <img src="Resources/images/portfolio6.jpg" alt="Vista previa del proyecto cloud">
+            </button>
+          </div>
           <div class="portfolio-layer">
             <span class="project-tag">Cloud</span>
             <h3>Despliegue y mantenimiento</h3>
@@ -323,6 +389,17 @@
       </div>
     </section>
   </main>
+
+  <div class="image-modal" id="image-modal" aria-hidden="true" role="dialog" aria-labelledby="image-modal-title">
+    <div class="image-modal-backdrop" data-close-modal="true"></div>
+    <div class="image-modal-content">
+      <button type="button" class="image-modal-close" id="image-modal-close" aria-label="Cerrar imagen ampliada">
+        <i class="bx bx-x" aria-hidden="true"></i>
+      </button>
+      <p class="image-modal-title" id="image-modal-title">Vista ampliada</p>
+      <img id="image-modal-preview" src="" alt="">
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="footer-text">
