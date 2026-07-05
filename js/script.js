@@ -11,6 +11,7 @@ const imageModal = document.querySelector('#image-modal');
 const imageModalPreview = document.querySelector('#image-modal-preview');
 const imageModalTitle = document.querySelector('#image-modal-title');
 const imageModalClose = document.querySelector('#image-modal-close');
+const backToTopButton = document.querySelector('.footer-iconTop a');
 
 const openImageModal = (trigger) => {
     if (!imageModal || !imageModalPreview || !imageModalTitle) {
@@ -83,6 +84,14 @@ navLinks.forEach((link) => {
 });
 
 updateActiveLink();
+
+backToTopButton?.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
 
 imageTriggers.forEach((trigger) => {
     trigger.addEventListener('click', () => openImageModal(trigger));
