@@ -187,20 +187,36 @@ contactForm?.addEventListener('submit', async (event) => {
     }
 });
 
-// Contador de visitas global con CountAPI
+// Contador de visitas global con fallback local
 const initVisitCounter = async () => {
     const counterElement = document.querySelector('#visit-count');
     if (!counterElement) return;
 
+    const LOCAL_KEY = 'portafolio_visitas';
+
+    const showLocalCount = () => {
+        let count = parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10);
+        count++;
+        localStorage.setItem(LOCAL_KEY, count.toString());
+        counterElement.textContent = count.toLocaleString('es-UY');
+    };
+
     try {
-        const namespace = 'portafolio-giqhdev';
-        const key = 'visitas';
-        const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 3000);
+
+        const response = await fetch(
+            'https://api.countapi.xyz/hit/portafolio-giqhdev/visitas',
+            { signal: controller.signal }
+        );
+        clearTimeout(timeout);
+
+        if (!response.ok) throw new Error('API no disponible');
+
         const data = await response.json();
         counterElement.textContent = data.value.toLocaleString('es-UY');
-    } catch (error) {
-        counterElement.textContent = '--';
-        console.error('Error al cargar contador:', error);
+    } catch {
+        showLocalCount();
     }
 };
 
