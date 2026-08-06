@@ -144,24 +144,64 @@ if (window.Typed) {
     });
 }
 
-contactForm?.addEventListener('submit', (event) => {
+contactForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const name = formData.get('name')?.toString().trim() || '';
-    const email = formData.get('email')?.toString().trim() || '';
-    const subject = formData.get('subject')?.toString().trim() || '';
-    const phone = formData.get('phone')?.toString().trim() || '';
-    const message = formData.get('message')?.toString().trim() || '';
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton?.textContent || 'Enviar mensaje';
+    
+    if (submitButton) {
+        submitButton.textContent = 'Enviando...';
+        submitButton.disabled = true;
+    }
 
-    const emailSubject = encodeURIComponent(`Consulta desde portafolio: ${subject}`);
-    const emailBody = encodeURIComponent(
-        `Nombre: ${name}\nCorreo: ${email}\nTelefono: ${phone || 'No proporcionado'}\n\nMensaje:\n${message}`
-    );
+    try {
+        const formData = new FormData(contactForm);
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        });
 
-    window.location.href = `mailto:gustavoquintanahidalgo@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+        const result = await response.json();
 
-    if (formNote) {
-        formNote.textContent = 'Tu cliente de correo deberia abrirse con el mensaje preparado.';
+        if (result.success) {
+            if (formNote) {
+                formNote.textContent = 'Mensaje enviado correctamente. Te respondere pronto.';
+                formNote.style.color = '#77e6b6';
+            }
+            contactForm.reset();
+        } else {
+            throw new Error(result.message || 'Error al enviar');
+        }
+    } catch (error) {
+        if (formNote) {
+            formNote.textContent = 'Error al enviar. Intenta contactarme por correo o WhatsApp.';
+            formNote.style.color = '#ff6b6b';
+        }
+        console.error('Error:', error);
+    } finally {
+        if (submitButton) {
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+        }
     }
 });
+
+// Contador de visitas global con CountAPI
+const initVisitCounter = async () => {
+    const counterElement = document.querySelector('#visit-count');
+    if (!counterElement) return;
+
+    try {
+        const namespace = 'portafolio-giqhdev';
+        const key = 'visitas';
+        const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+        const data = await response.json();
+        counterElement.textContent = data.value.toLocaleString('es-UY');
+    } catch (error) {
+        counterElement.textContent = '--';
+        console.error('Error al cargar contador:', error);
+    }
+};
+
+initVisitCounter();
