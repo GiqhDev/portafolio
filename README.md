@@ -19,10 +19,22 @@ Portafolio web de Gustavo Quintana, enfocado en presentar perfil profesional, se
 - Galeria de proyectos reales con imagenes, stack y enlaces a repositorios
 - Modal para ampliar capturas de cada proyecto
 - Boton de volver arriba y formulario de contacto funcionales
+- Open Graph tags para compartir en redes sociales
+- Lazy loading en imagenes para mejor rendimiento
+- Formulario con Web3Forms (servicio gratuito)
+
+## Configuracion del formulario de contacto
+
+El formulario usa [Web3Forms](https://web3forms.com/) para enviar mensajes directamente a tu correo. Para configurarlo:
+
+1. Ve a [web3forms.com](https://web3forms.com/) y crea una cuenta gratuita
+2. Copia tu Access Key
+3. Abre `index.html` y reemplaza `TU_ACCESS_KEY_AQUI` con tu Access Key real
+4. Los mensajes se enviaran a tu correo registrado en Web3Forms
 
 ## Pendientes recomendados
 
-- Optimizar peso de las imagenes principales para mejorar la carga inicial
+- Optimizar peso de las imagenes principales (usar TinyPNG o convertir a WebP)
 - Agregar demos en vivo si alguno de los proyectos queda desplegado
 - Conectar un dominio personalizado si quieres una version final mas profesional
 
