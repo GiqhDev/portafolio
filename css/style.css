@@ -435,6 +435,74 @@ section {
     margin-top: 3rem;
 }
 
+.tech-badges {
+    margin-top: 3rem;
+}
+
+.tech-badges-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.badges-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--panel-color);
+    border: 1px solid var(--line-color);
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+    border-color: var(--main-color);
+    background: rgba(119, 230, 182, 0.08);
+    transform: translateY(-2px);
+}
+
+.tech-badge-dotnet { border-color: rgba(81, 43, 212, 0.4); color: #512BD4; }
+.tech-badge-dotnet:hover { border-color: #512BD4; background: rgba(81, 43, 212, 0.1); }
+
+.tech-badge-csharp { border-color: rgba(104, 33, 122, 0.4); color: #68217A; }
+.tech-badge-csharp:hover { border-color: #68217A; background: rgba(104, 33, 122, 0.1); }
+
+.tech-badge-blazor { border-color: rgba(81, 43, 212, 0.4); color: #512BD4; }
+.tech-badge-blazor:hover { border-color: #512BD4; background: rgba(81, 43, 212, 0.1); }
+
+.tech-badge-aspnet { border-color: rgba(81, 43, 212, 0.4); color: #512BD4; }
+.tech-badge-aspnet:hover { border-color: #512BD4; background: rgba(81, 43, 212, 0.1); }
+
+.tech-badge-efcore { border-color: rgba(81, 43, 212, 0.4); color: #512BD4; }
+.tech-badge-efcore:hover { border-color: #512BD4; background: rgba(81, 43, 212, 0.1); }
+
+.tech-badge-sqlserver { border-color: rgba(204, 41, 39, 0.4); color: #CC2927; }
+.tech-badge-sqlserver:hover { border-color: #CC2927; background: rgba(204, 41, 39, 0.1); }
+
+.tech-badge-postgresql { border-color: rgba(51, 103, 145, 0.4); color: #336791; }
+.tech-badge-postgresql:hover { border-color: #336791; background: rgba(51, 103, 145, 0.1); }
+
+.tech-badge-react { border-color: rgba(97, 218, 251, 0.4); color: #61DAFB; }
+.tech-badge-react:hover { border-color: #61DAFB; background: rgba(97, 218, 251, 0.1); }
+
+.tech-badge-azure { border-color: rgba(0, 137, 214, 0.4); color: #0089D6; }
+.tech-badge-azure:hover { border-color: #0089D6; background: rgba(0, 137, 214, 0.1); }
+
+.tech-badge-git { border-color: rgba(240, 80, 50, 0.4); color: #F05032; }
+.tech-badge-git:hover { border-color: #F05032; background: rgba(240, 80, 50, 0.1); }
+
+.tech-badge-maui { border-color: rgba(155, 79, 150, 0.4); color: #9B4F96; }
+.tech-badge-maui:hover { border-color: #9B4F96; background: rgba(155, 79, 150, 0.1); }
+
 .highlight-card,
 .services-box,
 .contact-panel,

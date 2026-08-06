@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://giqhdev.github.io/portafolio/sitemap.xml
+
+# Disallow admin pages (if any)
+Disallow: /.git/
+Disallow: /.vscode/
