@@ -186,3 +186,22 @@ contactForm?.addEventListener('submit', async (event) => {
         }
     }
 });
+
+// Contador de visitas global con CountAPI
+const initVisitCounter = async () => {
+    const counterElement = document.querySelector('#visit-count');
+    if (!counterElement) return;
+
+    try {
+        const namespace = 'portafolio-giqhdev';
+        const key = 'visitas';
+        const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+        const data = await response.json();
+        counterElement.textContent = data.value.toLocaleString('es-UY');
+    } catch (error) {
+        counterElement.textContent = '--';
+        console.error('Error al cargar contador:', error);
+    }
+};
+
+initVisitCounter();
