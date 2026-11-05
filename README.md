@@ -31,7 +31,7 @@ Los recursos fuente de `A_Implementar/` se conservan localmente y no forman part
 
 ## Verificacion
 
-Ejecuta `node --test tests/interactions.test.js` para comprobar el formulario y el modal.
+Ejecuta `node --test tests/*.test.js` para comprobar el formulario, el modal y los enlaces de proyectos.
 
 ## Pendientes recomendados
 
