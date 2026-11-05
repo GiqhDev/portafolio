@@ -15,13 +15,17 @@
   <meta property="og:url" content="https://giqhdev.github.io/portafolio/">
   <meta property="og:title" content="Gustavo Quintana | Desarrollador .NET">
   <meta property="og:description" content="Portafolio de Gustavo Quintana, desarrollador de software especializado en .NET, aplicaciones web, desktop y móviles.">
-  <meta property="og:image" content="Resources/images/about.png">
+  <meta property="og:image" content="https://giqhdev.github.io/portafolio/Resources/images/social-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GIQH Soft-Factory y áreas de desarrollo de software">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gustavo Quintana | Desarrollador .NET">
   <meta name="twitter:description" content="Portafolio de Gustavo Quintana, desarrollador de software especializado en .NET, aplicaciones web, desktop y móviles.">
-  <meta name="twitter:image" content="Resources/images/about.png">
+  <meta name="twitter:image" content="https://giqhdev.github.io/portafolio/Resources/images/social-preview.jpg">
+  <meta name="twitter:image:alt" content="GIQH Soft-Factory y áreas de desarrollo de software">
 
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -67,7 +71,7 @@
 
         <div class="hero-actions">
           <a href="#portfolio" class="btn">Ver proyectos</a>
-          <a href="Resources/cv/CV240501-1_Gustavo_Quintana_Hidalgo.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Descargar CV</a>
+          <a href="Resources/cv/CV_Gustavo_Quintana.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Descargar CV</a>
         </div>
 
         <div class="social-media" aria-label="Redes y canales de contacto">
@@ -328,6 +332,39 @@
             <button
               type="button"
               class="project-image-trigger"
+              data-modal-image="Resources/images/myserialkey.jpg"
+              data-modal-alt="Ilustración conceptual de licencias firmadas y componentes reutilizables"
+              data-modal-title="MySerialKey.GiqhDev"
+              aria-label="Ampliar imagen del proyecto MySerialKey.GiqhDev"
+            >
+              <img src="Resources/images/myserialkey.jpg" alt="Ilustración conceptual de MySerialKey.GiqhDev" loading="lazy">
+              <span class="project-visual-hint">Click para ampliar</span>
+            </button>
+          </div>
+          <div class="portfolio-layer">
+            <span class="project-tag">Librería .NET publicada</span>
+            <h3>MySerialKey.GiqhDev</h3>
+            <p class="project-role">Licenciamiento firmado y activación offline reutilizable entre productos.</p>
+            <p>Paquete con formatos portables para emitir, validar y revocar licencias, además de gestionar activaciones sin conexión.</p>
+            <ul class="project-stack" aria-label="Tecnologías usadas en MySerialKey.GiqhDev">
+              <li>.NET</li>
+              <li>ECDSA P-256</li>
+              <li>NuGet</li>
+              <li>Offline</li>
+              <li>Tests</li>
+            </ul>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/GiqhDev/MySerialKey.GiqhDev" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+              <span class="project-link is-disabled">Versión 2.0 estable</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-box">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
               data-modal-image="Resources/images/atrix.jpg"
               data-modal-alt="Vista ampliada del proyecto ATRiX"
               data-modal-title="ATRiX"
@@ -361,6 +398,39 @@
             <button
               type="button"
               class="project-image-trigger"
+              data-modal-image="Resources/images/license-admin.jpg"
+              data-modal-alt="Ilustración conceptual del ciclo de licencias firmadas"
+              data-modal-title="GiqhDev.LicenseAdmin"
+              aria-label="Ampliar imagen del proyecto GiqhDev.LicenseAdmin"
+            >
+              <img src="Resources/images/license-admin.jpg" alt="Ilustración conceptual de GiqhDev.LicenseAdmin" loading="lazy">
+              <span class="project-visual-hint">Click para ampliar</span>
+            </button>
+          </div>
+          <div class="portfolio-layer">
+            <span class="project-tag">Administración de licencias</span>
+            <h3>GiqhDev.LicenseAdmin</h3>
+            <p class="project-role">Herramienta WPF para custodia de claves y emisión de licencias firmadas.</p>
+            <p>Gestiona emisión, activación offline, revocaciones, auditoría y rotación controlada para distintos productos.</p>
+            <ul class="project-stack" aria-label="Tecnologías usadas en GiqhDev.LicenseAdmin">
+              <li>.NET 10</li>
+              <li>WPF</li>
+              <li>MVVM</li>
+              <li>DPAPI</li>
+              <li>ECDSA</li>
+            </ul>
+            <div class="project-links">
+              <span class="project-link is-disabled">Repositorio privado</span>
+              <span class="project-link is-disabled">Piloto productivo pendiente</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-box">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
               data-modal-image="Resources/images/clasificadosuy.jpg"
               data-modal-alt="Vista ampliada del proyecto ClasificadosUY"
               data-modal-title="ClasificadosUY"
@@ -385,6 +455,39 @@
             <div class="project-links">
               <a class="project-link" href="https://github.com/GiqhDev/ClasificadosUY" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
               <span class="project-link is-disabled">Build verificado</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-box">
+          <div class="portfolio-media">
+            <button
+              type="button"
+              class="project-image-trigger"
+              data-modal-image="Resources/images/nexum-pos.jpg"
+              data-modal-alt="Mockup conceptual de caja, catálogo y ticket de un punto de venta"
+              data-modal-title="Nexum POS / SistemaPOS"
+              aria-label="Ampliar imagen del proyecto Nexum POS"
+            >
+              <img src="Resources/images/nexum-pos.jpg" alt="Mockup conceptual del proyecto Nexum POS" loading="lazy">
+              <span class="project-visual-hint">Click para ampliar</span>
+            </button>
+          </div>
+          <div class="portfolio-layer">
+            <span class="project-tag">Punto de venta</span>
+            <h3>Nexum POS</h3>
+            <p class="project-role">SistemaPOS: aplicación de escritorio para caja, inventario y ventas.</p>
+            <p>Operación local con turnos de caja, stock transaccional, tickets térmicos, respaldos y licenciamiento offline.</p>
+            <ul class="project-stack" aria-label="Tecnologías usadas en Nexum POS">
+              <li>.NET 10</li>
+              <li>WPF</li>
+              <li>SQLite</li>
+              <li>Dapper</li>
+              <li>ESC/POS</li>
+            </ul>
+            <div class="project-links">
+              <span class="project-link is-disabled">Repositorio privado</span>
+              <span class="project-link is-disabled">Licencia productiva pendiente</span>
             </div>
           </div>
         </article>
@@ -485,12 +588,7 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="TU_ACCESS_KEY_AQUI">
-          <input type="hidden" name="subject" value="Nuevo mensaje desde portafolio">
-          <input type="hidden" name="from_name" value="Portafolio - Gustavo Quintana">
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none">
-
+        <form class="contact-form" id="contact-form">
           <div class="input-box">
             <label>
               <span>Nombre</span>
@@ -518,14 +616,15 @@
             <textarea name="message" rows="10" placeholder="Cuantame que necesitas y en que etapa esta el proyecto." required></textarea>
           </label>
 
-          <button type="submit" class="btn">Enviar mensaje</button>
-          <p class="form-note" id="form-note">Tu mensaje se enviará directamente a mi correo electrónico.</p>
+          <button type="submit" class="btn" disabled>Preparar correo</button>
+          <p class="form-note" id="form-note" role="status" aria-live="polite">Prepararemos tu correo para que lo revises y lo envíes.</p>
+          <noscript><p class="form-note">Para usar el formulario necesitas JavaScript. También puedes escribirme desde el enlace de correo.</p></noscript>
         </form>
       </div>
     </section>
   </main>
 
-  <div class="image-modal" id="image-modal" aria-hidden="true" role="dialog" aria-labelledby="image-modal-title">
+  <div class="image-modal" id="image-modal" aria-hidden="true" aria-modal="true" role="dialog" aria-labelledby="image-modal-title">
     <div class="image-modal-backdrop" data-close-modal="true"></div>
     <div class="image-modal-content">
       <button type="button" class="image-modal-close" id="image-modal-close" aria-label="Cerrar imagen ampliada">
@@ -539,10 +638,6 @@
   <footer class="footer">
     <div class="footer-text">
       <p>Copyright &copy; 2026 Gustavo Quintana. Todos los derechos reservados.</p>
-      <p class="visit-counter" id="visit-counter">
-        <i class="bx bx-show" aria-hidden="true"></i>
-        Visitas: <span id="visit-count">--</span>
-      </p>
     </div>
     <div class="footer-iconTop">
       <a href="#top" aria-label="Volver arriba"><i class="bx bx-up-arrow-alt" aria-hidden="true"></i></a>

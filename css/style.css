@@ -611,6 +611,8 @@ section {
 }
 
 .portfolio-box-featured-secondary {
+    grid-column: span 2;
+    grid-template-rows: 30rem 1fr;
     border-color: rgba(119, 230, 182, 0.16);
 }
 
@@ -959,23 +961,6 @@ section {
     color: var(--muted-color);
 }
 
-.visit-counter {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    background: rgba(119, 230, 182, 0.1);
-    border: 1px solid rgba(119, 230, 182, 0.2);
-    border-radius: 2rem;
-    font-size: 1.3rem;
-    color: var(--main-color);
-}
-
-.visit-counter i {
-    font-size: 1.4rem;
-}
-
 .footer-iconTop a {
     display: inline-flex;
     align-items: center;
@@ -994,7 +979,8 @@ section {
         font-size: 58%;
     }
 
-    .portfolio-box-featured {
+    .portfolio-box-featured,
+    .portfolio-box-featured-secondary {
         grid-column: span 1;
         grid-template-rows: 24rem 1fr;
     }
