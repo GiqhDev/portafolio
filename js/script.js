@@ -12,6 +12,7 @@ const imageModalPreview = document.querySelector('#image-modal-preview');
 const imageModalTitle = document.querySelector('#image-modal-title');
 const imageModalClose = document.querySelector('#image-modal-close');
 const backToTopButton = document.querySelector('.footer-iconTop a');
+let imageModalOpener = null;
 
 const openImageModal = (trigger) => {
     if (!imageModal || !imageModalPreview || !imageModalTitle) {
@@ -28,6 +29,8 @@ const openImageModal = (trigger) => {
     imageModal.classList.add('is-open');
     imageModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    imageModalOpener = trigger;
+    imageModalClose?.focus();
 };
 
 const closeImageModal = () => {
@@ -40,6 +43,8 @@ const closeImageModal = () => {
     imageModalPreview.src = '';
     imageModalPreview.alt = '';
     document.body.style.overflow = '';
+    imageModalOpener?.focus();
+    imageModalOpener = null;
 };
 
 const closeMenu = () => {
@@ -108,8 +113,16 @@ imageModal?.addEventListener('click', (event) => {
 });
 
 window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && imageModal?.classList.contains('is-open')) {
+    if (!imageModal?.classList.contains('is-open')) {
+        return;
+    }
+
+    if (event.key === 'Escape') {
+        event.preventDefault();
         closeImageModal();
+    } else if (event.key === 'Tab') {
+        event.preventDefault();
+        imageModalClose?.focus();
     }
 });
 
@@ -144,19 +157,40 @@ if (window.Typed) {
     });
 }
 
+const web3FormsKey = contactForm?.elements.namedItem('access_key')?.value.trim();
+const hasWeb3FormsKey = Boolean(web3FormsKey && web3FormsKey !== 'TU_ACCESS_KEY_AQUI');
+const contactSubmitButton = contactForm?.querySelector('button[type="submit"]');
+
+if (contactSubmitButton && !hasWeb3FormsKey) {
+    contactSubmitButton.textContent = 'Preparar correo';
+}
+if (formNote && hasWeb3FormsKey) {
+    formNote.textContent = 'Tu mensaje se enviara directamente desde el formulario.';
+}
+
 contactForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton?.textContent || 'Enviar mensaje';
-    
-    if (submitButton) {
-        submitButton.textContent = 'Enviando...';
-        submitButton.disabled = true;
+    const formData = new FormData(contactForm);
+
+    if (!hasWeb3FormsKey) {
+        const subject = encodeURIComponent(`Consulta desde portafolio: ${formData.get('asunto')}`);
+        const body = encodeURIComponent(
+            `Nombre: ${formData.get('name')}\nCorreo: ${formData.get('email')}\nTelefono: ${formData.get('phone') || 'No proporcionado'}\n\nMensaje:\n${formData.get('message')}`
+        );
+        window.location.href = `mailto:gustavoquintanahidalgo@gmail.com?subject=${subject}&body=${body}`;
+        if (formNote) {
+            formNote.textContent = 'Revisa el mensaje en tu cliente de correo y pulsa enviar.';
+        }
+        return;
+    }
+
+    if (contactSubmitButton) {
+        contactSubmitButton.textContent = 'Enviando...';
+        contactSubmitButton.disabled = true;
     }
 
     try {
-        const formData = new FormData(contactForm);
         const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             body: formData
@@ -180,43 +214,51 @@ contactForm?.addEventListener('submit', async (event) => {
         }
         console.error('Error:', error);
     } finally {
-        if (submitButton) {
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
+        if (contactSubmitButton) {
+            contactSubmitButton.textContent = 'Enviar mensaje';
+            contactSubmitButton.disabled = false;
         }
     }
 });
 
-// Contador de visitas global con fallback local
 const initVisitCounter = async () => {
     const counterElement = document.querySelector('#visit-count');
-    if (!counterElement) return;
+    const labelElement = document.querySelector('#visit-label');
+    if (!counterElement || !labelElement) return;
 
     const LOCAL_KEY = 'portafolio_visitas';
 
     const showLocalCount = () => {
-        let count = parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10);
-        count++;
-        localStorage.setItem(LOCAL_KEY, count.toString());
-        counterElement.textContent = count.toLocaleString('es-UY');
+        try {
+            const count = (parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10) || 0) + 1;
+            localStorage.setItem(LOCAL_KEY, count.toString());
+            labelElement.textContent = 'Visitas en este navegador:';
+            counterElement.textContent = count.toLocaleString('es-UY');
+        } catch {
+            labelElement.textContent = 'Visitas:';
+            counterElement.textContent = 'no disponibles';
+        }
     };
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
     try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 3000);
-
         const response = await fetch(
             'https://api.countapi.xyz/hit/portafolio-giqhdev/visitas',
             { signal: controller.signal }
         );
-        clearTimeout(timeout);
-
         if (!response.ok) throw new Error('API no disponible');
 
         const data = await response.json();
+        if (!Number.isSafeInteger(data.value) || data.value < 0) {
+            throw new Error('Respuesta invalida del contador');
+        }
+        labelElement.textContent = 'Visitas totales:';
         counterElement.textContent = data.value.toLocaleString('es-UY');
     } catch {
         showLocalCount();
+    } finally {
+        clearTimeout(timeout);
     }
 };
 

@@ -18,19 +18,25 @@ Portafolio web de Gustavo Quintana, enfocado en presentar perfil profesional, se
 - Contacto por correo, LinkedIn y WhatsApp
 - Galeria de proyectos reales con imagenes, stack y enlaces a repositorios
 - Modal para ampliar capturas de cada proyecto
-- Boton de volver arriba y formulario de contacto funcionales
+- Boton de volver arriba y formulario que prepara un correo sin configuracion adicional
 - Open Graph tags para compartir en redes sociales
 - Lazy loading en imagenes para mejor rendimiento
-- Formulario con Web3Forms (servicio gratuito)
+- Envio directo opcional con Web3Forms
 
 ## Configuracion del formulario de contacto
 
-El formulario usa [Web3Forms](https://web3forms.com/) para enviar mensajes directamente a tu correo. Para configurarlo:
+Sin clave configurada, el formulario abre el cliente de correo del visitante con el mensaje preparado. La persona debe revisar y enviar ese correo. Para habilitar el envio directo con [Web3Forms](https://web3forms.com/):
 
 1. Ve a [web3forms.com](https://web3forms.com/) y crea una cuenta gratuita
 2. Copia tu Access Key
 3. Abre `index.html` y reemplaza `TU_ACCESS_KEY_AQUI` con tu Access Key real
 4. Los mensajes se enviaran a tu correo registrado en Web3Forms
+
+La clave se incluye en el HTML publico, como requiere este tipo de formulario estatico. No reutilices una credencial privada en ese campo.
+
+## Verificacion
+
+Ejecuta `node --test tests/interactions.test.js` para comprobar el formulario, el contador y el modal.
 
 ## Pendientes recomendados
 

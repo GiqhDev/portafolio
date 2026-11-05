@@ -611,6 +611,8 @@ section {
 }
 
 .portfolio-box-featured-secondary {
+    grid-column: span 2;
+    grid-template-rows: 30rem 1fr;
     border-color: rgba(119, 230, 182, 0.16);
 }
 
@@ -994,7 +996,8 @@ section {
         font-size: 58%;
     }
 
-    .portfolio-box-featured {
+    .portfolio-box-featured,
+    .portfolio-box-featured-secondary {
         grid-column: span 1;
         grid-template-rows: 24rem 1fr;
     }
