@@ -94,7 +94,7 @@ backToTopButton?.addEventListener('click', (event) => {
     event.preventDefault();
     window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
     });
 });
 
@@ -171,7 +171,7 @@ contactForm?.addEventListener('submit', (event) => {
     const body = encodeURIComponent(
         `Nombre: ${formData.get('name')}\nCorreo: ${formData.get('email')}\nTelefono: ${formData.get('phone') || 'No proporcionado'}\n\nMensaje:\n${formData.get('message')}`
     );
-    window.location.href = `mailto:gustavoquintanahidalgo@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:gustavoiqh95@gmail.com?subject=${subject}&body=${body}`;
 
     if (formNote) {
         formNote.textContent = 'Revisa el mensaje en tu cliente de correo y pulsa enviar.';
