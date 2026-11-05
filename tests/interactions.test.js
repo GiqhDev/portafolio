@@ -29,12 +29,10 @@ function element(extra = {}) {
     };
 }
 
-function loadSite({ accessKey = 'TU_ACCESS_KEY_AQUI', counterResponse, storageError = false } = {}) {
-    const submitButton = element({ textContent: 'Enviar mensaje' });
+function loadSite() {
+    const submitButton = element({ textContent: 'Preparar correo', disabled: true });
     const form = element({
-        elements: { namedItem: () => ({ value: accessKey }) },
         querySelector: () => submitButton,
-        reset() { this.resetCalled = true; },
         values: {
             name: 'Ana', email: 'ana@example.com', asunto: 'Proyecto web',
             phone: '', message: 'Necesito una API'
@@ -45,8 +43,6 @@ function loadSite({ accessKey = 'TU_ACCESS_KEY_AQUI', counterResponse, storageEr
     } });
     const modal = element();
     const close = element();
-    const label = element();
-    const count = element();
     const note = element({ style: {} });
     const preview = element();
     const title = element();
@@ -55,13 +51,13 @@ function loadSite({ accessKey = 'TU_ACCESS_KEY_AQUI', counterResponse, storageEr
         '.header': element(), '#contact-form': form, '#form-note': note,
         '#image-modal': modal, '#image-modal-preview': preview,
         '#image-modal-title': title, '#image-modal-close': close,
-        '.footer-iconTop a': element(), '#visit-label': label, '#visit-count': count
+        '.footer-iconTop a': element()
     };
     const windowEvents = {};
-    const fetchCalls = [];
     const window = {
         location: { href: '' },
         scrollY: 0,
+        scrollTo(options) { this.scrollOptions = options; },
         addEventListener: (name, handler) => { windowEvents[name] = handler; }
     };
     const context = {
@@ -75,63 +71,21 @@ function loadSite({ accessKey = 'TU_ACCESS_KEY_AQUI', counterResponse, storageEr
             constructor(source) { this.values = source.values; }
             get(name) { return this.values[name]; }
         },
-        fetch: async (url) => {
-            fetchCalls.push(url);
-            if (url.includes('countapi')) {
-                if (counterResponse instanceof Error) throw counterResponse;
-                return counterResponse ?? { ok: true, json: async () => ({ value: 42 }) };
-            }
-            return { json: async () => ({ success: true }) };
-        },
-        localStorage: {
-            getItem: () => { if (storageError) throw new Error('blocked'); return '2'; },
-            setItem: () => { if (storageError) throw new Error('blocked'); }
-        },
-        setTimeout,
-        clearTimeout,
-        AbortController,
+        fetch: () => { throw new Error('Unexpected network request'); },
         console
     };
     vm.runInNewContext(script, context);
-    return { form, submitButton, trigger, modal, close, label, count, note, preview, title, window, windowEvents, fetchCalls };
+    return { form, submitButton, trigger, modal, close, note, preview, title, window, windowEvents, backToTopButton: nodes['.footer-iconTop a'] };
 }
 
-test('sin clave, prepara un correo y no intenta enviarlo por Web3Forms', async () => {
+test('prepara un correo sin enviar datos por red', () => {
     const site = loadSite();
     assert.equal(site.submitButton.textContent, 'Preparar correo');
-    await site.form.listeners.submit({ preventDefault() {} });
+    assert.equal(site.submitButton.disabled, false);
+    site.form.listeners.submit({ preventDefault() {} });
     assert.match(site.window.location.href, /^mailto:gustavoquintanahidalgo@gmail\.com\?/);
     assert.match(decodeURIComponent(site.window.location.href), /Proyecto web[\s\S]*Necesito una API/);
-    assert.equal(site.fetchCalls.some((url) => url.includes('web3forms')), false);
-    assert.equal(site.form.resetCalled, undefined);
-});
-
-test('con clave, envia por Web3Forms y confirma solo tras una respuesta exitosa', async () => {
-    const site = loadSite({ accessKey: 'configured-key' });
-    await site.form.listeners.submit({ preventDefault() {} });
-    assert.equal(site.fetchCalls.some((url) => url.includes('web3forms')), true);
-    assert.equal(site.form.resetCalled, true);
-    assert.equal(site.window.location.href, '');
-});
-
-test('si falla la API de visitas, identifica el conteo como local', async () => {
-    const site = loadSite({ counterResponse: new Error('offline') });
-    await new Promise((resolve) => setImmediate(resolve));
-    assert.equal(site.label.textContent, 'Visitas en este navegador:');
-    assert.equal(site.count.textContent, '3');
-});
-
-test('si responde la API, identifica el total global', async () => {
-    const site = loadSite();
-    await new Promise((resolve) => setImmediate(resolve));
-    assert.equal(site.label.textContent, 'Visitas totales:');
-    assert.equal(site.count.textContent, '42');
-});
-
-test('si no hay almacenamiento local, no inventa una cifra de visitas', async () => {
-    const site = loadSite({ counterResponse: new Error('offline'), storageError: true });
-    await new Promise((resolve) => setImmediate(resolve));
-    assert.equal(site.count.textContent, 'no disponibles');
+    assert.equal(site.note.textContent, 'Revisa el mensaje en tu cliente de correo y pulsa enviar.');
 });
 
 test('el modal toma el foco, lo mantiene y lo devuelve al cerrar', () => {
@@ -145,4 +99,13 @@ test('el modal toma el foco, lo mantiene y lo devuelve al cerrar', () => {
     site.windowEvents.keydown({ key: 'Escape', preventDefault() {} });
     assert.equal(site.modal.classList.contains('is-open'), false);
     assert.equal(site.trigger.focused, true);
+});
+
+test('el boton de volver arriba desplaza al inicio', () => {
+    const site = loadSite();
+    let prevented = false;
+    site.backToTopButton.listeners.click({ preventDefault() { prevented = true; } });
+    assert.equal(prevented, true);
+    assert.equal(site.window.scrollOptions.top, 0);
+    assert.equal(site.window.scrollOptions.behavior, 'smooth');
 });

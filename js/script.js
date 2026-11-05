@@ -157,109 +157,23 @@ if (window.Typed) {
     });
 }
 
-const web3FormsKey = contactForm?.elements.namedItem('access_key')?.value.trim();
-const hasWeb3FormsKey = Boolean(web3FormsKey && web3FormsKey !== 'TU_ACCESS_KEY_AQUI');
 const contactSubmitButton = contactForm?.querySelector('button[type="submit"]');
 
-if (contactSubmitButton && !hasWeb3FormsKey) {
-    contactSubmitButton.textContent = 'Preparar correo';
-}
-if (formNote && hasWeb3FormsKey) {
-    formNote.textContent = 'Tu mensaje se enviara directamente desde el formulario.';
+if (contactSubmitButton) {
+    contactSubmitButton.disabled = false;
 }
 
-contactForm?.addEventListener('submit', async (event) => {
+contactForm?.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const formData = new FormData(contactForm);
+    const subject = encodeURIComponent(`Consulta desde portafolio: ${formData.get('asunto')}`);
+    const body = encodeURIComponent(
+        `Nombre: ${formData.get('name')}\nCorreo: ${formData.get('email')}\nTelefono: ${formData.get('phone') || 'No proporcionado'}\n\nMensaje:\n${formData.get('message')}`
+    );
+    window.location.href = `mailto:gustavoquintanahidalgo@gmail.com?subject=${subject}&body=${body}`;
 
-    if (!hasWeb3FormsKey) {
-        const subject = encodeURIComponent(`Consulta desde portafolio: ${formData.get('asunto')}`);
-        const body = encodeURIComponent(
-            `Nombre: ${formData.get('name')}\nCorreo: ${formData.get('email')}\nTelefono: ${formData.get('phone') || 'No proporcionado'}\n\nMensaje:\n${formData.get('message')}`
-        );
-        window.location.href = `mailto:gustavoquintanahidalgo@gmail.com?subject=${subject}&body=${body}`;
-        if (formNote) {
-            formNote.textContent = 'Revisa el mensaje en tu cliente de correo y pulsa enviar.';
-        }
-        return;
-    }
-
-    if (contactSubmitButton) {
-        contactSubmitButton.textContent = 'Enviando...';
-        contactSubmitButton.disabled = true;
-    }
-
-    try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            if (formNote) {
-                formNote.textContent = 'Mensaje enviado correctamente. Te respondere pronto.';
-                formNote.style.color = '#77e6b6';
-            }
-            contactForm.reset();
-        } else {
-            throw new Error(result.message || 'Error al enviar');
-        }
-    } catch (error) {
-        if (formNote) {
-            formNote.textContent = 'Error al enviar. Intenta contactarme por correo o WhatsApp.';
-            formNote.style.color = '#ff6b6b';
-        }
-        console.error('Error:', error);
-    } finally {
-        if (contactSubmitButton) {
-            contactSubmitButton.textContent = 'Enviar mensaje';
-            contactSubmitButton.disabled = false;
-        }
+    if (formNote) {
+        formNote.textContent = 'Revisa el mensaje en tu cliente de correo y pulsa enviar.';
     }
 });
-
-const initVisitCounter = async () => {
-    const counterElement = document.querySelector('#visit-count');
-    const labelElement = document.querySelector('#visit-label');
-    if (!counterElement || !labelElement) return;
-
-    const LOCAL_KEY = 'portafolio_visitas';
-
-    const showLocalCount = () => {
-        try {
-            const count = (parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10) || 0) + 1;
-            localStorage.setItem(LOCAL_KEY, count.toString());
-            labelElement.textContent = 'Visitas en este navegador:';
-            counterElement.textContent = count.toLocaleString('es-UY');
-        } catch {
-            labelElement.textContent = 'Visitas:';
-            counterElement.textContent = 'no disponibles';
-        }
-    };
-
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 3000);
-    try {
-        const response = await fetch(
-            'https://api.countapi.xyz/hit/portafolio-giqhdev/visitas',
-            { signal: controller.signal }
-        );
-        if (!response.ok) throw new Error('API no disponible');
-
-        const data = await response.json();
-        if (!Number.isSafeInteger(data.value) || data.value < 0) {
-            throw new Error('Respuesta invalida del contador');
-        }
-        labelElement.textContent = 'Visitas totales:';
-        counterElement.textContent = data.value.toLocaleString('es-UY');
-    } catch {
-        showLocalCount();
-    } finally {
-        clearTimeout(timeout);
-    }
-};
-
-initVisitCounter();

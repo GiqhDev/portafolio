@@ -21,42 +21,32 @@ Portafolio web de Gustavo Quintana, enfocado en presentar perfil profesional, se
 - Boton de volver arriba y formulario que prepara un correo sin configuracion adicional
 - Open Graph tags para compartir en redes sociales
 - Lazy loading en imagenes para mejor rendimiento
-- Envio directo opcional con Web3Forms
+- Imagen social horizontal de GIQH Soft-Factory
 
-## Configuracion del formulario de contacto
+## Contacto
 
-Sin clave configurada, el formulario abre el cliente de correo del visitante con el mensaje preparado. La persona debe revisar y enviar ese correo. Para habilitar el envio directo con [Web3Forms](https://web3forms.com/):
+El formulario prepara un mensaje con `mailto:`. El visitante debe tener un cliente de correo configurado, revisar el borrador y pulsar enviar. No existe un envio automatico ni se almacena el contenido en el sitio. Si JavaScript esta desactivado, usa los enlaces directos de correo o WhatsApp.
 
-1. Ve a [web3forms.com](https://web3forms.com/) y crea una cuenta gratuita
-2. Copia tu Access Key
-3. Abre `index.html` y reemplaza `TU_ACCESS_KEY_AQUI` con tu Access Key real
-4. Los mensajes se enviaran a tu correo registrado en Web3Forms
-
-La clave se incluye en el HTML publico, como requiere este tipo de formulario estatico. No reutilices una credencial privada en ese campo.
+Los recursos fuente de `A_Implementar/` se conservan localmente y no forman parte del sitio publicado.
 
 ## Verificacion
 
-Ejecuta `node --test tests/interactions.test.js` para comprobar el formulario, el contador y el modal.
+Ejecuta `node --test tests/interactions.test.js` para comprobar el formulario y el modal.
 
 ## Pendientes recomendados
 
-- Optimizar peso de las imagenes principales (usar TinyPNG o convertir a WebP)
 - Agregar demos en vivo si alguno de los proyectos queda desplegado
 - Conectar un dominio personalizado si quieres una version final mas profesional
 
-## Publicacion recomendada
+## Publicacion
 
-La forma mas simple para este proyecto es GitHub Pages, porque el sitio es estatico y no necesita build.
+El sitio se publica mediante GitHub Pages desde la rama `main` y la carpeta `/ (root)`: [giqhdev.github.io/portafolio](https://giqhdev.github.io/portafolio/). No necesita build.
 
-1. Haz merge de la rama `Dev` a `main`.
-2. En GitHub entra a `Settings > Pages`.
-3. En `Build and deployment`, elige `Deploy from a branch`.
-4. Selecciona la rama `main` y la carpeta `/ (root)`.
-5. Guarda y espera a que GitHub publique el sitio.
+Para actualizarlo, integra `Dev` en `main` y comprueba la publicacion de Pages.
 
 ## Checklist antes de publicar
 
 - Verificar que el PDF del CV abra correctamente desde `Resources/cv/`
 - Confirmar que todos los enlaces a GitHub, LinkedIn y WhatsApp abran bien
 - Probar el modal de imagenes en desktop y mobile
-- Reducir las imagenes mas pesadas si quieres una carga mas rapida en produccion
+- Comprobar la vista previa social y las imagenes de proyectos
