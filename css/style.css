@@ -57,6 +57,12 @@ a {
     text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible {
+    outline: 0.2rem solid var(--main-color);
+    outline-offset: 0.4rem;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -470,37 +476,37 @@ section {
     transform: translateY(-2px);
 }
 
-.tech-badge-dotnet { border-color: rgba(81, 43, 212, 0.4); color: #512BD4; }
+.tech-badge-dotnet { border-color: rgba(81, 43, 212, 0.4); color: #b9a5ff; }
 .tech-badge-dotnet:hover { border-color: #512BD4; background: rgba(81, 43, 212, 0.1); }
 
-.tech-badge-csharp { border-color: rgba(104, 33, 122, 0.4); color: #68217A; }
+.tech-badge-csharp { border-color: rgba(104, 33, 122, 0.4); color: #e2a8ee; }
 .tech-badge-csharp:hover { border-color: #68217A; background: rgba(104, 33, 122, 0.1); }
 
-.tech-badge-blazor { border-color: rgba(81, 43, 212, 0.4); color: #512BD4; }
+.tech-badge-blazor { border-color: rgba(81, 43, 212, 0.4); color: #b9a5ff; }
 .tech-badge-blazor:hover { border-color: #512BD4; background: rgba(81, 43, 212, 0.1); }
 
-.tech-badge-aspnet { border-color: rgba(81, 43, 212, 0.4); color: #512BD4; }
+.tech-badge-aspnet { border-color: rgba(81, 43, 212, 0.4); color: #b9a5ff; }
 .tech-badge-aspnet:hover { border-color: #512BD4; background: rgba(81, 43, 212, 0.1); }
 
-.tech-badge-efcore { border-color: rgba(81, 43, 212, 0.4); color: #512BD4; }
+.tech-badge-efcore { border-color: rgba(81, 43, 212, 0.4); color: #b9a5ff; }
 .tech-badge-efcore:hover { border-color: #512BD4; background: rgba(81, 43, 212, 0.1); }
 
-.tech-badge-sqlserver { border-color: rgba(204, 41, 39, 0.4); color: #CC2927; }
+.tech-badge-sqlserver { border-color: rgba(204, 41, 39, 0.4); color: #ffaaa5; }
 .tech-badge-sqlserver:hover { border-color: #CC2927; background: rgba(204, 41, 39, 0.1); }
 
-.tech-badge-postgresql { border-color: rgba(51, 103, 145, 0.4); color: #336791; }
+.tech-badge-postgresql { border-color: rgba(51, 103, 145, 0.4); color: #9bc9ed; }
 .tech-badge-postgresql:hover { border-color: #336791; background: rgba(51, 103, 145, 0.1); }
 
 .tech-badge-react { border-color: rgba(97, 218, 251, 0.4); color: #61DAFB; }
 .tech-badge-react:hover { border-color: #61DAFB; background: rgba(97, 218, 251, 0.1); }
 
-.tech-badge-azure { border-color: rgba(0, 137, 214, 0.4); color: #0089D6; }
+.tech-badge-azure { border-color: rgba(0, 137, 214, 0.4); color: #85d0ff; }
 .tech-badge-azure:hover { border-color: #0089D6; background: rgba(0, 137, 214, 0.1); }
 
-.tech-badge-git { border-color: rgba(240, 80, 50, 0.4); color: #F05032; }
+.tech-badge-git { border-color: rgba(240, 80, 50, 0.4); color: #ffad96; }
 .tech-badge-git:hover { border-color: #F05032; background: rgba(240, 80, 50, 0.1); }
 
-.tech-badge-maui { border-color: rgba(155, 79, 150, 0.4); color: #9B4F96; }
+.tech-badge-maui { border-color: rgba(155, 79, 150, 0.4); color: #e4ade0; }
 .tech-badge-maui:hover { border-color: #9B4F96; background: rgba(155, 79, 150, 0.1); }
 
 .highlight-card,
@@ -888,6 +894,11 @@ section {
     color: var(--main-color);
 }
 
+.contact-links span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
 .contact-form {
     display: grid;
     gap: 1.8rem;
@@ -1015,7 +1026,6 @@ section {
     }
 
     .home-visual {
-        order: -1;
         min-height: 48rem;
     }
 
@@ -1098,17 +1108,31 @@ section {
     }
 
     .home-visual {
-        min-height: 42rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        min-height: 0;
+    }
+
+    .image-frame {
+        grid-column: 1 / -1;
+        width: min(30rem, 100%);
+        margin-inline: auto;
     }
 
     .stat-card {
         position: static;
-        margin-top: 1.6rem;
-        width: 100%;
+        min-width: 0;
+        width: auto;
+        padding: 1.2rem;
     }
 
-    .home-visual {
-        display: block;
+    .stat-number {
+        font-size: 2.4rem;
+    }
+
+    .stat-label {
+        font-size: 1.2rem;
     }
 
     .hero-actions {
@@ -1125,5 +1149,18 @@ section {
 
     .footer-text p {
         text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
 }

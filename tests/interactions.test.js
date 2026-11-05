@@ -57,6 +57,7 @@ function loadSite() {
     const window = {
         location: { href: '' },
         scrollY: 0,
+        matchMedia: () => ({ matches: false }),
         scrollTo(options) { this.scrollOptions = options; },
         addEventListener: (name, handler) => { windowEvents[name] = handler; }
     };
@@ -83,7 +84,7 @@ test('prepara un correo sin enviar datos por red', () => {
     assert.equal(site.submitButton.textContent, 'Preparar correo');
     assert.equal(site.submitButton.disabled, false);
     site.form.listeners.submit({ preventDefault() {} });
-    assert.match(site.window.location.href, /^mailto:gustavoquintanahidalgo@gmail\.com\?/);
+    assert.match(site.window.location.href, /^mailto:gustavoiqh95@gmail\.com\?/);
     assert.match(decodeURIComponent(site.window.location.href), /Proyecto web[\s\S]*Necesito una API/);
     assert.equal(site.note.textContent, 'Revisa el mensaje en tu cliente de correo y pulsa enviar.');
 });
@@ -108,4 +109,11 @@ test('el boton de volver arriba desplaza al inicio', () => {
     assert.equal(prevented, true);
     assert.equal(site.window.scrollOptions.top, 0);
     assert.equal(site.window.scrollOptions.behavior, 'smooth');
+});
+
+test('volver arriba respeta movimiento reducido', () => {
+    const site = loadSite();
+    site.window.matchMedia = () => ({ matches: true });
+    site.backToTopButton.listeners.click({ preventDefault() {} });
+    assert.equal(site.window.scrollOptions.behavior, 'auto');
 });
